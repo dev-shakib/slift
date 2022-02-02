@@ -73,8 +73,9 @@ For more advanced developers I strongly encourage you to use `git rebase` instea
 
 ## Code Styles
 
-Code style for front-end (react + redux) is inspired by [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
-Code style for back-end (node) is inspired by [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+Code style for front-end (react + redux) is inspired by [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react).
+
+Code style for back-end (node) is inspired by [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
 
 ## Some style guides
 
@@ -99,5 +100,9 @@ Code style for back-end (node) is inspired by [Airbnb JavaScript Style Guide](ht
 - Only iew files end in JSX
 - Commit messages:
   - \<filename> :<what changed, added, removed>
+
+## Contributors
+
+Outliant Team
 
 Enjoy working! :)
