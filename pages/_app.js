@@ -7,6 +7,11 @@ import { authenticatedFetch } from "@shopify/app-bridge-utils";
 import { Redirect } from "@shopify/app-bridge/actions";
 import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
+import { Provider as ReduxStoreProvider } from "react-redux";
+
+import AppRoutePropagator from "../components/routes/AppRoutePropagator";
+import reduxStore from "../store";
+import AppClientRouter from "../components/routes/AppClientRouter";
 
 function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);
@@ -44,7 +49,9 @@ function MyProvider(props) {
 
   return (
     <ApolloProvider client={client}>
-      <Component {...props} />
+      <ReduxStoreProvider store={reduxStore}>
+        <Component {...props} />
+      </ReduxStoreProvider>
     </ApolloProvider>
   );
 }
@@ -61,6 +68,8 @@ class MyApp extends App {
             forceRedirect: true,
           }}
         >
+          <AppClientRouter />
+          <AppRoutePropagator />
           <MyProvider Component={Component} {...pageProps} />
         </Provider>
       </AppProvider>
