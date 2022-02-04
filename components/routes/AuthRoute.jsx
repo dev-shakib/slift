@@ -1,16 +1,17 @@
-import { useRouter } from "next/router";
+import { useAppBridge } from "@shopify/app-bridge-react";
 import { useSelector } from "react-redux";
+import {Redirect} from "@shopify/app-bridge/actions"
 
 const AuthRoute = ({ children }) => {
   const authenticated = useSelector(({ auth }) => auth.isLoggedIn);
-  const router = useRouter();
+  const app = useAppBridge()
 
   if (typeof window === "undefined") {
     return null;
   }
 
   if (authenticated) {
-    router.replace("/");
+    app.dispatch(Redirect.toApp({path: "/"}))
     return null;
   }
 

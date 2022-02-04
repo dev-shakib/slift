@@ -49,9 +49,7 @@ function MyProvider(props) {
 
   return (
     <ApolloProvider client={client}>
-      <ReduxStoreProvider store={reduxStore}>
-        <Component {...props} />
-      </ReduxStoreProvider>
+      <Component {...props} />
     </ApolloProvider>
   );
 }
@@ -60,19 +58,21 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
     return (
-      <AppProvider i18n={translations}>
-        <Provider
-          config={{
-            apiKey: API_KEY,
-            host: host,
-            forceRedirect: true,
-          }}
-        >
-          <AppClientRouter />
-          <AppRoutePropagator />
-          <MyProvider Component={Component} {...pageProps} />
-        </Provider>
-      </AppProvider>
+        <AppProvider i18n={translations}>
+          <Provider
+            config={{
+              apiKey: API_KEY,
+              host: host,
+              forceRedirect: true,
+            }}
+          >
+            <ReduxStoreProvider store={reduxStore}>
+              <AppClientRouter />
+              <AppRoutePropagator />
+              <MyProvider Component={Component} {...pageProps} />
+            </ReduxStoreProvider>
+          </Provider>
+        </AppProvider>
     );
   }
 }
