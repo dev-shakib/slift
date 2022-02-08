@@ -19,14 +19,10 @@ const userSlice = createSlice({
         checked: true,
       };
     },
-    clearUserProfile: () => initialState
-    // ({
-    //   ...initialState,
-    //   onboarding: {
-    //     ...initialState.onboarding,
-    //     checked: true,
-    //   },
-    // }),
+    clearUserProfile: () => initialState,
+    completeOnboarding: (state) => {
+      state.onboarding.status = true
+    }
   },
 });
 
