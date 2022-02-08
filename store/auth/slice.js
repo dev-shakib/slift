@@ -21,7 +21,6 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     signout: (state) => {
-      store.remove(SHOPLIFTUSER);
       state.isLoggedIn = false;
       state.user = null;
     },
