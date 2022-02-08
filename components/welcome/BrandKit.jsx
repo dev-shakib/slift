@@ -1,7 +1,15 @@
-import React from 'react';
+import { Button, DisplayText } from "@shopify/polaris";
+import React from "react";
 
-const BrandKit = () => {
-  return <div>Brand Kit</div>;
+const BrandKit = ({ handleNext }) => {
+  return (
+    <>
+      <DisplayText>Brand Kit</DisplayText>
+      <Button size="large" onClick={handleNext}>
+        Confirm Brand Styles
+      </Button>
+    </>
+  );
 };
 
 export default BrandKit;

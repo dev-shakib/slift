@@ -1,7 +1,17 @@
-import React from 'react';
+import { Button, DisplayText } from "@shopify/polaris";
+import React from "react";
 
-const ImportBrandStyles = () => {
-  return <div>Import Brand Styles</div>;
+const ImportBrandStyles = ({ handleNext }) => {
+  return (
+    <>
+      <DisplayText>
+        Let's scan your store and import your brand styles
+      </DisplayText>
+      <Button size="large" onClick={handleNext}>
+        Review Brand Kit
+      </Button>
+    </>
+  );
 };
 
 export default ImportBrandStyles;
