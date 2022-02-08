@@ -5,7 +5,6 @@ import * as userActions from "../../store/user/actions";
 import LoadingBar from "../common/LoadingBar";
 
 const AppRouteSwitcher = ({ children }) => {
-  console.log("AppRouteSwitcher");
   const { authenticated, onboardingStatusChecked } = useSelector(
     ({ auth, user }) => ({
       authenticated: auth.isLoggedIn,
@@ -13,13 +12,10 @@ const AppRouteSwitcher = ({ children }) => {
     })
   );
 
-  console.log(authenticated, onboardingStatusChecked);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (authenticated) {
-      console.log("getting user!");
       dispatch(userActions.getUser());
     }
   }, [authenticated, dispatch]);
