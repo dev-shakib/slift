@@ -12,6 +12,8 @@ import { Provider as ReduxStoreProvider } from "react-redux";
 import AppRoutePropagator from "../components/routes/AppRoutePropagator";
 import reduxStore from "../store";
 import AppClientRouter from "../components/routes/AppClientRouter";
+import "../styles/theme.scss";
+import AppRouteSwitcher from "../components/routes/AppRouteSwitcher";
 
 function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);
@@ -49,7 +51,9 @@ function MyProvider(props) {
 
   return (
     <ApolloProvider client={client}>
-      <Component {...props} />
+      <AppRouteSwitcher>
+        <Component {...props} />
+      </AppRouteSwitcher>
     </ApolloProvider>
   );
 }
@@ -58,21 +62,21 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
     return (
-        <AppProvider i18n={translations}>
-          <Provider
-            config={{
-              apiKey: API_KEY,
-              host: host,
-              forceRedirect: true,
-            }}
-          >
-            <ReduxStoreProvider store={reduxStore}>
-              <AppClientRouter />
-              <AppRoutePropagator />
-              <MyProvider Component={Component} {...pageProps} />
-            </ReduxStoreProvider>
-          </Provider>
-        </AppProvider>
+      <AppProvider i18n={translations}>
+        <Provider
+          config={{
+            apiKey: API_KEY,
+            host: host,
+            forceRedirect: true,
+          }}
+        >
+          <ReduxStoreProvider store={reduxStore}>
+            <AppClientRouter />
+            <AppRoutePropagator />
+            <MyProvider Component={Component} {...pageProps} />
+          </ReduxStoreProvider>
+        </Provider>
+      </AppProvider>
     );
   }
 }

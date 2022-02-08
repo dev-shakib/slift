@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../store/user/actions";
 import LoadingBar from "../common/LoadingBar";
 
-const UserRoute = ({ children }) => {
+const OnboardingRoute = ({ children }) => {
   const { authenticated, onboarding } = useSelector(({ auth, user }) => ({
     authenticated: auth?.isLoggedIn,
     onboarding: user?.onboarding,
@@ -34,12 +34,12 @@ const UserRoute = ({ children }) => {
   //   return <LoadingBar />;
   // }
 
-  if (authenticated && onboarding && !onboarding.status) {
-    app.dispatch(Redirect.toApp({ path: "/welcome" }));
+  if (authenticated && onboarding && onboarding.status) {
+    app.dispatch(Redirect.toApp({ path: "/" }));
     return null;
   }
 
   return children;
 };
 
-export default UserRoute;
+export default OnboardingRoute;

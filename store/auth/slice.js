@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import store from "store-js";
 
-const SHOPLIFTUSER = "shoplift_user";
+export const SHOPLIFTUSER = "shoplift_user";
 const user = store.get(SHOPLIFTUSER);
 
 const initialState = user
