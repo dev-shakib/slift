@@ -1,0 +1,23 @@
+.title {
+    margin-top: 58px;
+    margin-bottom: 21px;
+}
+.subtitle {
+    opacity: 0.6;
+    margin-bottom: 21px;
+}
+.cards {
+    margin-top: 34px;
+    :global .Polaris-Card {
+        margin-bottom: 21px;
+    }
+}
+.placeholderRound {
+    width: 175px;
+    height: 175px;
+    background: #c4c4c4;
+    border-radius: 50%;
+}
+.cardTitle {
+    margin-bottom: 16px;
+}

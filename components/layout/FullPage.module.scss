@@ -1,0 +1,8 @@
+.fullpageLayout {
+  @media screen and (min-width: 46.5em) {
+    height: calc(100vh - 57px);
+    // height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
