@@ -1,12 +1,11 @@
 import { DisplayText, Layout, Page } from "@shopify/polaris";
 import React, { useState } from "react";
 
-import StartPage from "../components/welcome/Welcome"
-import ImportBrandStylesPage from "../components/welcome/ImportBrandStyles"
-import BrandKitPage from "../components/welcome/BrandKit"
-import SetupDonePage from "../components/welcome/SetupDone"
+import StartPage from "../components/welcome/Start";
+import ImportBrandStylesPage from "../components/welcome/ImportBrandStyles";
+import BrandKitPage from "../components/welcome/BrandKit";
+import SetupDonePage from "../components/welcome/SetupDone";
 import OnboardingRoute from "../components/routes/OnboadingRoute";
-
 
 function WelcomePage() {
   const [activeStep, setActiveStep] = useState(0);
@@ -34,11 +33,7 @@ function WelcomePage() {
 
   return (
     <OnboardingRoute>
-      <Page>
-        <Layout>
-          <Layout.Section>{renderCurrentStepForm()}</Layout.Section>
-        </Layout>
-      </Page>
+      <Page>{renderCurrentStepForm()}</Page>
     </OnboardingRoute>
   );
 }

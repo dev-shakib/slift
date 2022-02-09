@@ -1,20 +1,15 @@
 import { TitleBar } from "@shopify/app-bridge-react";
 import {
   Button,
-  Card,
   DisplayText,
-  Heading,
-  Layout,
-  Page,
-  SkeletonThumbnail,
-  Stack,
 } from "@shopify/polaris";
 import classNames from "classnames";
+
 import FullPage from "../layout/FullPage";
+import styles from "./Start.module.scss";
+import StartCards from "./start/StartCards";
 
-import styles from "./Welcome.module.scss";
-
-const Welcome = ({ handleNext }) => {
+const Start = ({ handleNext }) => {
   return (
     <FullPage>
       <TitleBar title="Welcome" />
@@ -29,7 +24,7 @@ const Welcome = ({ handleNext }) => {
           minutes.
         </DisplayText>
       </div>
-      
+      <StartCards/>
       <Button size="large" onClick={handleNext}>
         Get Started
       </Button>
@@ -37,4 +32,4 @@ const Welcome = ({ handleNext }) => {
   );
 };
 
-export default Welcome;
+export default Start;
