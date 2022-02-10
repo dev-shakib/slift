@@ -13,7 +13,7 @@ const StartCard = ({ title, content }) => {
         <Card.Section>
           <div className="text-center">
             <h6 className={classNames("Polaris-Heading", styles.cardTitle)}>{title}</h6>
-            <p>{content}</p>
+            <p className={styles.cardSubtitle}>{content}</p>
           </div>
         </Card.Section>
       </Card>

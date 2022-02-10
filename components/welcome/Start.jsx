@@ -1,8 +1,5 @@
 import { TitleBar } from "@shopify/app-bridge-react";
-import {
-  Button,
-  DisplayText,
-} from "@shopify/polaris";
+import { Button, DisplayText, Page } from "@shopify/polaris";
 import classNames from "classnames";
 
 import FullPage from "../layout/FullPage";
@@ -24,10 +21,12 @@ const Start = ({ handleNext }) => {
           minutes.
         </DisplayText>
       </div>
-      <StartCards/>
-      <Button size="large" onClick={handleNext}>
-        Get Started
-      </Button>
+      <StartCards />
+      <div className={styles.getStartedBtn}>
+        <Button size="large" primary onClick={handleNext}>
+          Get Started
+        </Button>
+      </div>
     </FullPage>
   );
 };
