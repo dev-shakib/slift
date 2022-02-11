@@ -1,4 +1,4 @@
-import { DisplayText, Layout, Page } from "@shopify/polaris";
+import { DisplayText, Page } from "@shopify/polaris";
 import React, { useState } from "react";
 
 import StartPage from "../components/welcome/Start";
@@ -33,7 +33,7 @@ function WelcomePage() {
 
   return (
     <OnboardingRoute>
-      <Page>{renderCurrentStepForm()}</Page>
+        {renderCurrentStepForm()}
     </OnboardingRoute>
   );
 }

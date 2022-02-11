@@ -1,0 +1,76 @@
+.mainContent {
+  margin-top: 63px;
+}
+.titleArea {
+  margin-bottom: 49px;
+}
+.title {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 20px;
+  margin-bottom: 34px;
+}
+.subtitle {
+  opacity: 0.6;
+  font-size: 20px;
+  line-height: 24px;
+}
+.cardSubtitle {
+  opacity: 0.6;
+  margin-left: 28px;
+}
+.cardTitleCheckbox {
+  :global .Polaris-Choice__Label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  //   :global .Polaris-Checkbox {
+  // :global .Polaris-Checkbox__Backdrop {
+  //   border-color: #000000;
+  //   &::before {
+  //     background: #000000;
+  //     // border-radius: 50%;
+  //   }
+  //   &::after {
+  //     border-radius: 50%;
+  //     background: #000000;
+  //   }
+  // }
+  //   }
+}
+.uploadLogo {
+  //   height: 65px;
+  :global .Polaris-Label {
+      margin-bottom: 18px;
+  }
+  :global .Polaris-DropZone--sizeExtraLarge {
+    width: 100%;
+    max-width: 569px;
+    height: 65px;
+    min-height: auto;
+    :global .Polaris-DropZone-FileUpload {
+      justify-content: start;
+      padding-left: 27px;
+      padding-right: 27px;
+      :global .Polaris-Stack--vertical {
+        flex-direction: row;
+        margin-top: 0;
+        align-items: center;
+        :global .Polaris-Stack__Item {
+          margin-top: 0;
+          &:first-child {
+            display: none;
+          }
+          &:last-child{
+             margin-left: 29px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cardContent {
+    margin-top: 18px;
+}

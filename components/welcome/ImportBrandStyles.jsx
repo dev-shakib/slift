@@ -1,5 +1,5 @@
 import { TitleBar } from "@shopify/app-bridge-react";
-import { Button, DisplayText, Icon, ProgressBar } from "@shopify/polaris";
+import { Button, Icon, Page, ProgressBar } from "@shopify/polaris";
 import { CircleTickMajor } from "@shopify/polaris-icons";
 import classNames from "classnames";
 import { useState } from "react";
@@ -22,7 +22,7 @@ const ImportBrandStyles = ({ handleNext }) => {
       }
       setProgress(100 - timeLeft);
       timeLeft -= 1;
-    }, 100);
+    }, 50);
   };
 
   const Start = (
@@ -77,10 +77,12 @@ const ImportBrandStyles = ({ handleNext }) => {
   );
 
   return (
-    <FullPage>
-      <TitleBar title="Import Brand Styles" />
-      {isScanScreen ? Scan : Start}
-    </FullPage>
+    <Page>
+      <FullPage>
+        <TitleBar title="Import Brand Styles" />
+        {isScanScreen ? Scan : Start}
+      </FullPage>
+    </Page>
   );
 };
 
