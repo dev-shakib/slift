@@ -42,7 +42,7 @@
 .uploadLogo {
   //   height: 65px;
   :global .Polaris-Label {
-      margin-bottom: 18px;
+    margin-bottom: 18px;
   }
   :global .Polaris-DropZone--sizeExtraLarge {
     width: 100%;
@@ -62,8 +62,8 @@
           &:first-child {
             display: none;
           }
-          &:last-child{
-             margin-left: 29px;
+          &:last-child {
+            margin-left: 29px;
           }
         }
       }
@@ -72,5 +72,68 @@
 }
 
 .cardContent {
-    margin-top: 18px;
+  margin-top: 18px;
+}
+.grayCard {
+  :global .Polaris-Card {
+    background: #f1f2f3;
+    box-shadow: none;
+  }
+  :global .label {
+    margin-bottom: 10px;
+  }
+}
+.fontPreview {
+  width: 183px;
+  height: 80px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 13px;
+}
+.headingsFontPreview {
+  font-family: "Bebas Neue", cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 20px;
+}
+.bodyFontPreview {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+}
+.uploadFontBtn {
+  width: 150px;
+  min-height: 36px;
+  :global .Polaris-DropZone--sizeMedium {
+    height: 36px;
+    width: 81px;
+    min-height: auto;
+    :global .Polaris-DropZone-FileUpload {
+      padding: 0;
+      height: auto;
+      :global .Polaris-DropZone-FileUpload__ActionTitle {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    :global .Polaris-Stack {
+      margin: 0;
+      :global .Polaris-Stack__Item {
+        margin: 0;
+      }
+    }
+  }
+}
+.selectShopifyFont {
+  :global .Polaris-Select {
+    width: 242px;
+  }
 }
