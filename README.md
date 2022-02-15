@@ -14,11 +14,17 @@ $ npm install
 
 ### Environment Variables
 
+```
 SHOPIFY_API_KEY="YOUR_SHOPIFY_API_KEY"
+
 SHOPIFY_API_SECRET="YOUR_SHOPIFY_SECRET"
+
 HOST="YOUR_TUNNEL_URL"
+
 SHOP="my-shop-name.myshopify.com"
+
 SCOPES=read_products
+```
 
 ### Starting Development Server
 
