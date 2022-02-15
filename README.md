@@ -14,11 +14,15 @@ $ npm install
 
 ### Environment Variables
 
-    Work in progress
+SHOPIFY_API_KEY="YOUR_SHOPIFY_API_KEY"
+SHOPIFY_API_SECRET="YOUR_SHOPIFY_SECRET"
+HOST="YOUR_TUNNEL_URL"
+SHOP="my-shop-name.myshopify.com"
+SCOPES=read_products
 
 ### Starting Development Server
 
-    $ npm run start
+    $ shopify app serve
 
 ## Running the Tests
 
