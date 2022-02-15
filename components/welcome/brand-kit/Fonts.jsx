@@ -32,7 +32,6 @@ const SHOPIFY_FONTS = [
 ];
 
 const Fonts = () => {
-  console.log(styles);
   return (
     <Layout.Section>
       <Card>
@@ -42,7 +41,6 @@ const Fonts = () => {
               <Checkbox
                 label="Fonts"
                 checked={true}
-                // onChange={handleChange}
               />
             </div>
           }
