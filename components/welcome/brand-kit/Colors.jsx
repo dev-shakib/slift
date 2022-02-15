@@ -1,6 +1,8 @@
 import { Card, Checkbox, Layout } from "@shopify/polaris";
+import classNames from "classnames";
 
 import styles from "../BrandKit.module.scss";
+import Primary from "./colors/Primary";
 
 const Colors = () => {
   return (
@@ -21,6 +23,9 @@ const Colors = () => {
             Our optimized page sections will use the color schemes defined
             below.
           </p>
+          <div className={classNames(styles.cardContent, styles.innerCards)}>
+            <Primary/>
+          </div>
         </Card.Section>
       </Card>
     </Layout.Section>
