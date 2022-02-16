@@ -6,12 +6,15 @@ import Shopify, { ApiVersion } from "@shopify/shopify-api";
 import Koa from "koa";
 import next from "next";
 import Router from "koa-router";
+import { appRoutes } from "./routes";
 
 dotenv.config();
+
 const port = parseInt(process.env.PORT, 10) || 8081;
 const dev = process.env.NODE_ENV !== "production";
 const config = require("config");
 const logger = require("./utils/logger");
+const storage = require("node-persist");
 const app = next({
   dev,
 });
@@ -28,13 +31,9 @@ Shopify.Context.initialize({
   SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
 });
 
-// Storing the currently active shops in memory will force them to re-login when your server restarts. You should
-// persist this object in your app.
-const ACTIVE_SHOPIFY_SHOPS = {};
-
 app.prepare().then(async () => {
   const server = new Koa();
-  const router = new Router();
+
   server.keys = [Shopify.Context.API_SECRET_KEY];
   server.use(
     createShopifyAuth({
@@ -42,19 +41,26 @@ app.prepare().then(async () => {
         // Access token and shop available in ctx.state.shopify
         const { shop, accessToken, scope } = ctx.state.shopify;
         const host = ctx.query.host;
-        ACTIVE_SHOPIFY_SHOPS[shop] = scope;
+
+        // Storing the currently active shops in memory will force them to re-login when your server restarts. You should
+        // persist this object in your app.
+        await storage.init();
+        await storage.setItem(`${shop}_accessToken`, accessToken);
+        await storage.setItem(`${shop}_shop`, shop);
 
         const response = await Shopify.Webhooks.Registry.register({
           shop,
           accessToken,
           path: "/webhooks",
           topic: "APP_UNINSTALLED",
-          webhookHandler: async (topic, shop, body) =>
-            delete ACTIVE_SHOPIFY_SHOPS[shop],
+          webhookHandler: async (topic, shop, body) => {
+            await storage.removeItem(`${shop}_accessToken`);
+            await storage.removeItem(`${shop}_shop`);
+          },
         });
 
         if (!response.success) {
-          console.log(
+          logger.info(
             `Failed to register APP_UNINSTALLED webhook: ${response.result}`
           );
         }
@@ -65,44 +71,8 @@ app.prepare().then(async () => {
     })
   );
 
-  const handleRequest = async (ctx) => {
-    await handle(ctx.req, ctx.res);
-    ctx.respond = false;
-    ctx.res.statusCode = 200;
-  };
-
-  router.post("/webhooks", async (ctx) => {
-    try {
-      await Shopify.Webhooks.Registry.process(ctx.req, ctx.res);
-      console.log(`Webhook processed, returned status code 200`);
-    } catch (error) {
-      console.log(`Failed to process webhook: ${error}`);
-    }
-  });
-
-  router.post(
-    "/graphql",
-    verifyRequest({ returnHeader: true }),
-    async (ctx, next) => {
-      await Shopify.Utils.graphqlProxy(ctx.req, ctx.res);
-    }
-  );
-
-  router.get("(/_next/static/.*)", handleRequest); // Static content is clear
-  router.get("/_next/webpack-hmr", handleRequest); // Webpack content is clear
-  router.get("(.*)", async (ctx) => {
-    const shop = ctx.query.shop;
-
-    // This shop hasn't been seen yet, go through OAuth to create a session
-    if (ACTIVE_SHOPIFY_SHOPS[shop] === undefined) {
-      ctx.redirect(`/auth?shop=${shop}`);
-    } else {
-      await handleRequest(ctx);
-    }
-  });
-
-  server.use(router.allowedMethods());
-  server.use(router.routes());
+  server.use(appRoutes.allowedMethods());
+  server.use(appRoutes.routes());
   server.listen(port, () => {
     logger.info(`> Ready on http://localhost:${port}`);
   });
