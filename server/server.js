@@ -87,6 +87,8 @@ app.prepare().then(async () => {
     await handleRequest(ctx);
   });
 
+  server.use(appRoutes.allowedMethods());
+  server.use(appRoutes.routes());
   server.use(router.allowedMethods());
   server.use(router.routes());
 
