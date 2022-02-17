@@ -1,7 +1,7 @@
 module.exports = {
   api: {
+    port: 8081,
     root: "/api",
-    version: "/v1",
   },
   logger: {
     console: {

@@ -1,18 +1,20 @@
 import Router from "koa-router";
-import { verifyRequest } from "@shopify/koa-shopify-auth";
 import { apiRoutes } from "./api.routes";
 
+const config = require("config");
 const storage = require("node-persist");
 
+const { port, root } = config.get("api");
+
 export const appRoutes = new Router()
-  .get("/ping", (ctx, next) => {
+  .get(`/ping`, (ctx, next) => {
     ctx.body = {
       message: "pong",
     };
     ctx.status = 200;
   })
-  .use("/api", apiRoutes.routes(), apiRoutes.allowedMethods())
-  .get("(.*)", async (ctx) => {
+  .use(`${root}`, apiRoutes.routes(), apiRoutes.allowedMethods())
+  .get(`(.*)`, async (ctx) => {
     const shop = ctx.query.shop;
 
     await storage.init();
