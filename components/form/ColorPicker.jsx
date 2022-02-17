@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { useRef, useState } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import useClickOutside from "../../hooks/useClickOutside";
 
+import useClickOutside from "../../hooks/useClickOutside";
 import styles from "./ColorPicker.module.scss";
 
 const ColorPicker = ({ label, color = "FFFFFF" }) => {
