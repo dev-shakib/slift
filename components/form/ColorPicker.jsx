@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback} from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 
 import useClickOutside from "../../hooks/useClickOutside";
@@ -21,7 +21,7 @@ const ColorPicker = ({ label, color = "FFFFFF" }) => {
           style={{ backgroundColor: color }}
           onClick={() => toggle(true)}
         />
-        <HexColorInput color={color} />
+        <HexColorInput color={color} className="Polaris-TextField__Input"/>
         {isOpen && (
           <div className="popover" ref={popover}>
             <HexColorPicker color={color} onChange={onChange} />

@@ -36,7 +36,7 @@ const Primary = () => {
         <Layout>
           <Layout.Section>
             <Stack>
-              <ColorPicker />
+              <ColorPicker label="Section Background" />
             </Stack>
           </Layout.Section>
           <Layout.Section secondary>Preview</Layout.Section>
