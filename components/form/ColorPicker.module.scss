@@ -1,0 +1,71 @@
+.picker {
+  position: relative;
+  align-items: center;
+}
+.swatchContainerstyles {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0 0.5rem 1.2rem;
+  border: 0.1rem solid var(--p-border-subdued);
+  border-right: 0 none;
+  min-height: 3.6rem;
+  //   border-radius: var(--p-border-radius-base);
+  border-top-left-radius: var(--p-border-radius-base);
+  border-bottom-left-radius: var(--p-border-radius-base);
+  border-top-color: var(--p-border-shadow);
+  //   border-radius: var(--p-border-radius-base);
+}
+.swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+//   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.popover {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  border-radius: 9px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+.input {
+  line-height: 2.4rem;
+  text-transform: none;
+  letter-spacing: normal;
+  position: relative;
+  z-index: 20;
+  display: block;
+  flex: 1 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 3.6rem;
+  margin: 0;
+  padding: 0.5rem 1.2rem;
+  background: none;
+  border: 0.1rem solid transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  caret-color: var(--p-text);
+  color: var(--p-text);
+  background-color: var(--p-surface);
+  border: 0.1rem solid var(--p-border-subdued);
+  border-top-color: var(--p-border-shadow);
+  border-radius: var(--p-border-radius-base);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0 none;
+  &:focus-visible {
+    outline: none;
+  }
+}
+.isFocused {
+  box-shadow: 0 0 0 0.2rem var(--p-focused);
+  outline: 0.1rem solid transparent;
+  border-radius: var(--p-border-radius-base);
+}
