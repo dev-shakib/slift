@@ -13,23 +13,23 @@ import ColorPicker from "../../../form/ColorPicker";
 import styles from "../../BrandKit.module.scss";
 import Preview from "./Preview";
 
-const Primary = () => {
+const Accent2 = () => {
   return (
     <Card>
       <Card.Section
         title={
           <Stack alignment="center">
-            <Heading>Primary</Heading>
+            <Heading>Accent 2</Heading>
             <Tooltip
-              content="Primary is Lorem ipsum dolor"
+              content="Accent is Lorem ipsum dolor"
               dismissOnMouseOut
               preferredPosition="above"
             >
               <Icon source={QuestionMarkMajor} color="base" />
             </Tooltip>
             <p className={styles.cardSubtitle}>
-              Your primary colors will be used by most custom sections and the
-              majority of your page content.
+              Your accent colors are used for important callouts or calls to
+              action, and are intended to draw attention.
             </p>
           </Stack>
         }
@@ -53,7 +53,7 @@ const Primary = () => {
             <Preview
               cardStyles={{ backgroundColor: "#FFFFFF" }}
               headingStyles={{ color: "#121212" }}
-              btnStyles={{ backgroundColor: "#cccccc", color: "#121212" }}
+              btnStyles={{ backgroundColor: "#CCCCCC", color: "#121212" }}
               bodyStyles={{ color: "#121212" }}
             />
           </Layout.Section>
@@ -63,4 +63,4 @@ const Primary = () => {
   );
 };
 
-export default Primary;
+export default Accent2;

@@ -13,23 +13,22 @@ import ColorPicker from "../../../form/ColorPicker";
 import styles from "../../BrandKit.module.scss";
 import Preview from "./Preview";
 
-const Primary = () => {
+const Secondary = () => {
   return (
     <Card>
       <Card.Section
         title={
           <Stack alignment="center">
-            <Heading>Primary</Heading>
+            <Heading>Secondary</Heading>
             <Tooltip
-              content="Primary is Lorem ipsum dolor"
+              content="Secondary is Lorem ipsum dolor"
               dismissOnMouseOut
               preferredPosition="above"
             >
               <Icon source={QuestionMarkMajor} color="base" />
             </Tooltip>
             <p className={styles.cardSubtitle}>
-              Your primary colors will be used by most custom sections and the
-              majority of your page content.
+            Your secondary colors will be used by sections to emphasize certain page content.
             </p>
           </Stack>
         }
@@ -37,23 +36,23 @@ const Primary = () => {
         <Layout>
           <Layout.Section>
             <Stack distribution="fillEvenly" spacing="extraLoose">
-              <ColorPicker label="Section Background" color="#FFFFFF" />
+              <ColorPicker label="Section Background" color="#F0F0F0" />
               <Stack vertical spacing="tight">
                 <ColorPicker label="Heading Text" defaultColor="#121212" />
                 <ColorPicker label="Body Text" defaultColor="#121212" />
                 <ColorPicker label="Sale Text" defaultColor="#CCCCCC" />
               </Stack>
               <Stack vertical spacing="tight">
-                <ColorPicker label="Button" defaultColor="#CCCCCC" />
-                <ColorPicker label="Button Text" defaultColor="#121212" />
+                <ColorPicker label="Button" defaultColor="#121212" />
+                <ColorPicker label="Button Text" defaultColor="#FFFFFF" />
               </Stack>
             </Stack>
           </Layout.Section>
           <Layout.Section secondary>
             <Preview
-              cardStyles={{ backgroundColor: "#FFFFFF" }}
+              cardStyles={{ backgroundColor: "#F0F0F0" }}
               headingStyles={{ color: "#121212" }}
-              btnStyles={{ backgroundColor: "#cccccc", color: "#121212" }}
+              btnStyles={{ backgroundColor: "#121212", color: "#FFFFFF" }}
               bodyStyles={{ color: "#121212" }}
             />
           </Layout.Section>
@@ -63,4 +62,4 @@ const Primary = () => {
   );
 };
 
-export default Primary;
+export default Secondary;

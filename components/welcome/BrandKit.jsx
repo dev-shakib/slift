@@ -1,13 +1,13 @@
 import {
+  Button,
   Layout,
   Page,
   TextContainer,
 } from "@shopify/polaris";
 
-import Colors from "./brand-kit/Colors";
-import Fonts from "./brand-kit/Fonts";
+import ColorsCard from "./brand-kit/Colors";
+import FontsCard from "./brand-kit/Fonts";
 import LogosCard from "./brand-kit/Logos";
-
 import styles from "./BrandKit.module.scss";
 
 const BrandKit = ({ handleNext }) => {
@@ -25,9 +25,12 @@ const BrandKit = ({ handleNext }) => {
         </div>
         <Layout>
           <LogosCard />
-          <Fonts />
-          <Colors />
+          <FontsCard />
+          <ColorsCard />
         </Layout>
+        <div className={styles.confirmBtn}>
+          <Button size="large" primary onClick={handleNext}>Confirm brand styles</Button>
+        </div>
       </div>
     </Page>
   );

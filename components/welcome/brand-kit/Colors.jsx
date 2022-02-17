@@ -2,7 +2,10 @@ import { Card, Checkbox, Layout } from "@shopify/polaris";
 import classNames from "classnames";
 
 import styles from "../BrandKit.module.scss";
+import Accent1 from "./colors/Accent1";
+import Accent2 from "./colors/Accent2";
 import Primary from "./colors/Primary";
+import Secondary from "./colors/Secondary";
 
 const Colors = () => {
   return (
@@ -24,7 +27,10 @@ const Colors = () => {
             below.
           </p>
           <div className={classNames(styles.cardContent, styles.innerCards)}>
-            <Primary/>
+            <Primary />
+            <Secondary />
+            <Accent1 />
+            <Accent2 />
           </div>
         </Card.Section>
       </Card>
