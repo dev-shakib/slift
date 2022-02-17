@@ -33,6 +33,7 @@ Shopify.Context.initialize({
 
 app.prepare().then(async () => {
   const server = new Koa();
+  const router = new Router();
 
   server.keys = [Shopify.Context.API_SECRET_KEY];
   server.use(
@@ -71,8 +72,24 @@ app.prepare().then(async () => {
     })
   );
 
-  server.use(appRoutes.allowedMethods());
-  server.use(appRoutes.routes());
+  const handleRequest = async (ctx) => {
+    await handle(ctx.req, ctx.res);
+    ctx.respond = false;
+    ctx.res.statusCode = 200;
+  };
+
+  router.get("(/_next/static/.*)", handleRequest); // Static content is clear
+  router.get("/_next/webpack-hmr", handleRequest); // Webpack content is clear
+  router.get("(.*)", async (ctx) => {
+    const shop = ctx.query.shop;
+
+    // This shop hasn't been seen yet, go through OAuth to create a session
+    await handleRequest(ctx);
+  });
+
+  server.use(router.allowedMethods());
+  server.use(router.routes());
+
   server.listen(port, () => {
     logger.info(`> Ready on http://localhost:${port}`);
   });
