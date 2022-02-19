@@ -2,7 +2,6 @@ module.exports = {
   api: {
     port: 8081,
     root: "/api",
-    bulk: "/bulk",
   },
   db: {
     host: "127.0.0.1",
