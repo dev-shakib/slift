@@ -5,6 +5,7 @@ const initialState = {
   onboarding: {
     status: false,
     checked: false,
+    createTest: false
   },
 };
 
@@ -20,8 +21,9 @@ const userSlice = createSlice({
       };
     },
     clearUserProfile: () => initialState,
-    completeOnboarding: (state) => {
-      state.onboarding.status = true
+    completeOnboarding: (state, action) => {
+      state.onboarding.status = true;
+      state.onboarding.createTest = action.payload;
     }
   },
 });

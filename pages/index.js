@@ -1,9 +1,10 @@
 import { Button, DisplayText, Heading, Page } from "@shopify/polaris";
+import Link from "next/link";
 import { useDispatch } from "react-redux";
 import UserRoute from "../components/routes/UserRoute";
 import * as authActions from "../store/auth/actions"
 
-const Dashboard = () => {
+function Dashboard() {
   const dispatch = useDispatch()
 
   const handleSignout = () => {
@@ -17,6 +18,7 @@ const Dashboard = () => {
         <Button plain monochrome onClick={handleSignout}>
           Sign out
         </Button>
+        <Link href="/create-a-test">Create a Test</Link>
       </Page>
     </UserRoute>
   );

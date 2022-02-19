@@ -20,7 +20,8 @@ const OnboardingRoute = ({ children }) => {
   }
 
   if (authenticated && onboarding && onboarding.status) {
-    app.dispatch(Redirect.toApp({ path: "/" }));
+    const toUserPage = onboarding.createTest ? "/create-a-test" : "/";
+    app.dispatch(Redirect.toApp({ path: toUserPage }));
     return null;
   }
 

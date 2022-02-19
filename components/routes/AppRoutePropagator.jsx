@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import Router, { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   RoutePropagator as ShopifyRoutePropagator,
   useAppBridge,
@@ -8,12 +8,12 @@ import { Redirect } from "@shopify/app-bridge/actions";
 
 const AppRoutePropagator = () => {
   const route = useRouter();
-  const { asPath } = route;
+  const { asPath, push } = route;
   const app = useAppBridge();
 
   useEffect(() => {
     app.subscribe(Redirect.Action.APP, ({ path }) => {
-      Router.push(path);
+      push(path);
     });
   }, []);
 
