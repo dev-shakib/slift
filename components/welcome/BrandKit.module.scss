@@ -1,5 +1,6 @@
 .mainContent {
   margin-top: 63px;
+  margin-bottom: 70px;
 }
 .titleArea {
   margin-bottom: 49px;
@@ -139,4 +140,9 @@
   :global .Polaris-Select {
     width: 242px;
   }
+}
+
+.confirmBtn {
+  width: 392px;
+  margin: 53px auto 0
 }

@@ -29,7 +29,7 @@ const BrandKit = ({ handleNext }) => {
           <ColorsCard />
         </Layout>
         <div className={styles.confirmBtn}>
-          <Button size="large" primary onClick={handleNext}>Confirm brand styles</Button>
+          <Button size="large" fullWidth primary onClick={handleNext}>Confirm Brand Styles</Button>
         </div>
       </div>
     </Page>
