@@ -1,6 +1,7 @@
 import Router from "koa-router";
 import Shopify from "@shopify/shopify-api";
 import storage from "node-persist";
+import { getBulkProduct } from "../../handlers";
 
 const router = new Router();
 
@@ -16,10 +17,7 @@ router.get("/", async (ctx, next) => {
 
     const accessToken = await storage.getItem(`${shop}_accessToken`);
 
-    const client = new Shopify.Clients.Rest(shop, accessToken);
-    const data = await client.get({
-      path: "products",
-    });
+    const data = await getBulkProduct(shop, accessToken);
 
     ctx.body = data;
     ctx.status = 200;
