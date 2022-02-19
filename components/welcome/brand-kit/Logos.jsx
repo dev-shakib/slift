@@ -1,7 +1,44 @@
-import { Card, Checkbox, DropZone, Layout } from "@shopify/polaris";
+import {
+  Card,
+  Checkbox,
+  DropZone,
+  Layout,
+  Stack,
+  Thumbnail,
+} from "@shopify/polaris";
+import { useState } from "react";
 import styles from "../BrandKit.module.scss";
 
 const Logos = () => {
+  const [logo, setLogo] = useState();
+
+  // const acceptedLogoTypes = ["image/png", "image/svg+xml"];
+  const handleUploadLogo = ({ acceptedFiles }) => {
+    console.log(acceptedFiles)
+    setLogo(acceptedFiles[0]);
+  };
+
+  const fileUpload = !logo && (
+    <DropZone.FileUpload
+      actionHint={
+        <span className="text-left">
+          <p>or drop a file to upload</p>
+          <p> Max file size ~1MB</p>
+        </span>
+      }
+    />
+  );
+
+  const uploadedLogo = logo && (
+    <Stack>
+      <Thumbnail
+        size="small"
+        alt={logo.name}
+        source={window.URL.createObjectURL(logo)}
+      />
+    </Stack>
+  );
+
   return (
     <Layout.Section>
       <Card>
@@ -27,16 +64,12 @@ const Logos = () => {
                   label={<span className="label">Logo</span>}
                   // type="image"
                   accept="image/png, image/svg+xml"
+                  allowMultiple={false}
                   variableHeight={true}
+                  onDrop={handleUploadLogo}
                 >
-                  <DropZone.FileUpload
-                    actionHint={
-                      <span className="text-left">
-                        <p>or drop files to upload</p>
-                        <p> Max file size ~1MB</p>
-                      </span>
-                    }
-                  />
+                  {uploadedLogo}
+                  {fileUpload}
                 </DropZone>
               </div>
             </Card.Subsection>
