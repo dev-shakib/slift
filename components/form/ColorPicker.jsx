@@ -14,8 +14,6 @@ const ColorPicker = ({ label, defaultColor = "FFFFFF" }) => {
   const close = useCallback(() => setIsOpen(false), []);
   useClickOutside(popover, close);
 
-  console.log(color)
-
   return (
     <>
       <div className="label form-field">{label}</div>
