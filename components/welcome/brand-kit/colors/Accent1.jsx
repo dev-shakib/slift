@@ -1,17 +1,31 @@
 import {
-  Button,
   Card,
   Heading,
   Icon,
-  Layout,
   Stack,
   Tooltip,
 } from "@shopify/polaris";
 import { QuestionMarkMajor } from "@shopify/polaris-icons";
-import ColorPicker from "../../../form/ColorPicker";
 
+// Styles
 import styles from "../../BrandKit.module.scss";
-import Preview from "./Preview";
+
+// Components
+import ColorsWithPreview from "./ColorsWithPreview";
+
+// Functions
+import brandKitFormModel from "../../../../helpers/brand-kit/formModel";
+
+const {
+  formFields: {
+    sectionBackgroundColorAccent1,
+    headingTextColorAccent1,
+    bodyTextColorAccent1,
+    saleTextColorAccent1,
+    btnColorAccent1,
+    btnTextColorAccent1,
+  },
+} = brandKitFormModel;
 
 const Accent1 = () => {
   return (
@@ -34,30 +48,14 @@ const Accent1 = () => {
           </Stack>
         }
       >
-        <Layout>
-          <Layout.Section>
-            <Stack distribution="fillEvenly" spacing="extraLoose">
-              <ColorPicker label="Section Background" color="#FFFFFF" />
-              <Stack vertical spacing="tight">
-                <ColorPicker label="Heading Text" defaultColor="#121212" />
-                <ColorPicker label="Body Text" defaultColor="#121212" />
-                <ColorPicker label="Sale Text" defaultColor="#CCCCCC" />
-              </Stack>
-              <Stack vertical spacing="tight">
-                <ColorPicker label="Button" defaultColor="#CCCCCC" />
-                <ColorPicker label="Button Text" defaultColor="#121212" />
-              </Stack>
-            </Stack>
-          </Layout.Section>
-          <Layout.Section secondary>
-            <Preview
-              cardStyles={{ backgroundColor: "#FFFFFF" }}
-              headingStyles={{ color: "#121212" }}
-              btnStyles={{ backgroundColor: "#CCCCCC", color: "#121212" }}
-              bodyStyles={{ color: "#121212" }}
-            />
-          </Layout.Section>
-        </Layout>
+        <ColorsWithPreview
+          sectionBackgroundColor={sectionBackgroundColorAccent1.name}
+          headingTextColor={headingTextColorAccent1.name}
+          bodyTextColor={bodyTextColorAccent1.name}
+          saleTextColor={saleTextColorAccent1.name}
+          btnColor={btnColorAccent1.name}
+          btnTextColor={btnTextColorAccent1.name}
+        />
       </Card.Section>
     </Card>
   );

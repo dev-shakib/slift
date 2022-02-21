@@ -63,9 +63,15 @@
   &:focus-visible {
     outline: none;
   }
+
 }
 .isFocused {
   box-shadow: 0 0 0 0.2rem var(--p-focused);
+  outline: 0.1rem solid transparent;
+  border-radius: var(--p-border-radius-base);
+}
+.hasError {
+  box-shadow: 0 0 0 0.2rem var(--p-action-critical);
   outline: 0.1rem solid transparent;
   border-radius: var(--p-border-radius-base);
 }

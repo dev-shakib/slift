@@ -1,3 +1,4 @@
+import { InlineError } from "@shopify/polaris";
 import classNames from "classnames";
 import { useRef, useState, useCallback } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
@@ -5,11 +6,11 @@ import { HexColorPicker, HexColorInput } from "react-colorful";
 import useClickOutside from "../../hooks/useClickOutside";
 import styles from "./ColorPicker.module.scss";
 
-const ColorPicker = ({ label, defaultColor = "FFFFFF" }) => {
+const ColorPicker = ({ name, label, color, onChange, error }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [color, setColor] = useState(defaultColor);
+  // const [color, setColor] = useState(defaultColor);
   const popover = useRef();
-  const [focused, setFocused] = useState(false); 
+  const [focused, setFocused] = useState(false);
 
   const close = useCallback(() => setIsOpen(false), []);
   useClickOutside(popover, close);
@@ -17,7 +18,14 @@ const ColorPicker = ({ label, defaultColor = "FFFFFF" }) => {
   return (
     <>
       <div className="label form-field">{label}</div>
-      <div className={classNames("d-flex", styles.picker, focused && styles.isFocused)}>
+      <div
+        className={classNames(
+          "d-flex",
+          styles.picker,
+          focused && styles.isFocused,
+          !!error && styles.hasError
+        )}
+      >
         <div className={styles.swatchContainerstyles}>
           <div
             className={styles.swatch}
@@ -28,15 +36,16 @@ const ColorPicker = ({ label, defaultColor = "FFFFFF" }) => {
         <HexColorInput
           color={color}
           className={styles.input}
-          onChange={setColor}
+          onChange={onChange}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
         {isOpen && (
           <div className={styles.popover} ref={popover}>
-            <HexColorPicker color={color} onChange={setColor} />
+            <HexColorPicker color={color} onChange={onChange} />
           </div>
         )}
+        {!!error && <InlineError message={error} fieldID={name} />}
       </div>
     </>
   );

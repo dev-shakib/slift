@@ -1,3 +1,4 @@
+import { TitleBar } from "@shopify/app-bridge-react";
 import { Button, DisplayText, Page, Stack } from "@shopify/polaris";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
@@ -19,6 +20,7 @@ const SetupDone = () => {
 
   return (
     <Page>
+      <TitleBar title={null} />
       <FullPage>
         <div className={classNames("text-center", styles.title)}>
           <DisplayText element="h2" size="large">

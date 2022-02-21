@@ -144,5 +144,18 @@
 
 .confirmBtn {
   width: 392px;
-  margin: 53px auto 0
+  margin: 53px auto 0;
+}
+
+.hasUploadedData {
+  :global .Polaris-DropZone__Container {
+    background: #f1f2f3;
+    border-radius: 4px;
+    padding: 7px 12px;
+  }
+}
+
+.uploadedLogo {
+  width: auto;
+  height: 50px;
 }

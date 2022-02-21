@@ -2,15 +2,22 @@ import {
   Card,
   Checkbox,
   DropZone,
-  FormLayout,
   Layout,
   Select,
   Stack,
-  Thumbnail,
 } from "@shopify/polaris";
 import classNames from "classnames";
+import { Controller, useFormContext } from "react-hook-form";
 
+// Styles
 import styles from "../BrandKit.module.scss";
+
+// Functions
+import brandKitFormModel from "../../../helpers/brand-kit/formModel";
+
+const {
+  formFields: { fonts },
+} = brandKitFormModel;
 
 const HeadingsFontPreview = () => (
   <div className={classNames(styles.headingsFontPreview, styles.fontPreview)}>
@@ -32,15 +39,27 @@ const SHOPIFY_FONTS = [
 ];
 
 const Fonts = () => {
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
   return (
     <Layout.Section>
       <Card>
         <Card.Section
           title={
             <div className={styles.cardTitleCheckbox}>
-              <Checkbox
-                label="Fonts"
-                checked={true}
+              <Controller
+                name={fonts.name}
+                control={control}
+                render={({ field: { ref, ...fieldProps } }) => (
+                  <Checkbox
+                    {...fieldProps}
+                    label={fonts.label}
+                    checked={fieldProps.value}
+                    error={errors?.[fonts.name]?.message}
+                  />
+                )}
               />
             </div>
           }
@@ -98,7 +117,7 @@ const Fonts = () => {
                         />
                       </div>
                       <div className={styles.uploadFontBtn}>
-                      <DropZone
+                        <DropZone
                           label={
                             <span className="label">Upload OTF or TTF</span>
                           }
