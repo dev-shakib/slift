@@ -24,6 +24,20 @@ const brandKitFormModel = {
         invalid: "Please confirm if you have selected fonts by ticking.",
       },
     },
+    headingsFont: {
+      name: "headingsFont",
+      label: "Shopify Fonts",
+      errorMsg: {
+        required: "Headings font is required.",
+      },
+    },
+    bodyFont: {
+      name: "bodyFont",
+      label: "Shopify Fonts",
+      errorMsg: {
+        required: "Body font is required.",
+      },
+    },
     colors: {
       name: "colors",
       label: "Colors",

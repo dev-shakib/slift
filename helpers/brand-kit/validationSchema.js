@@ -6,6 +6,8 @@ const {
     logos,
     uploadedLogo,
     fonts,
+    headingsFont,
+    bodyFont,
     colors,
     sectionBackgroundColorPrimary,
     headingTextColorPrimary,
@@ -44,6 +46,8 @@ const BrandKitSchema = Yup.object().shape({
   [fonts.name]: Yup.boolean()
     .required(fonts.errorMsg.required)
     .oneOf([true], fonts.errorMsg.invalid),
+  [headingsFont.name]: Yup.string().required(headingsFont.errorMsg.required),
+  [bodyFont.name]: Yup.string().required(bodyFont.errorMsg.required),
   [colors.name]: Yup.boolean()
     .required(colors.errorMsg.required)
     .oneOf([true], colors.errorMsg.invalid),

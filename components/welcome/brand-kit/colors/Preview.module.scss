@@ -22,9 +22,10 @@
   padding-right: 38px;
   :global .heading {
     font-size: 30px;
-    line-height: 20px;
+    line-height: 1;
     font-family: "Bebas Neue";
     margin-bottom: 17px;
+    text-align: center;
   }
   :global .body-text {
     text-align: center;

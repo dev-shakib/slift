@@ -1,7 +1,6 @@
 import {
   Card,
   Checkbox,
-  DropZone,
   Layout,
   Select,
   Stack,
@@ -16,33 +15,70 @@ import styles from "../BrandKit.module.scss";
 import brandKitFormModel from "../../../helpers/brand-kit/formModel";
 
 const {
-  formFields: { fonts },
+  formFields: { fonts, headingsFont, bodyFont },
 } = brandKitFormModel;
 
-const HeadingsFontPreview = () => (
-  <div className={classNames(styles.headingsFontPreview, styles.fontPreview)}>
-    Bebas Neue
+const HeadingsFontPreview = ({ fontFamily }) => (
+  <div
+    className={classNames(styles.headingsFontPreview, styles.fontPreview)}
+    style={{ fontFamily: fontFamily }}
+  >
+    Heading
   </div>
 );
 
-const BodyFontPreview = () => (
-  <div className={classNames(styles.fontPreview, styles.bodyFontPreview)}>
-    Trade Gothic
+const BodyFontPreview = ({ fontFamily }) => (
+  <div
+    className={classNames(styles.fontPreview, styles.bodyFontPreview)}
+    style={{ fontFamily: fontFamily }}
+  >
+    Body Text
   </div>
 );
 
 const SHOPIFY_FONTS = [
-  { label: "Bebas Neue", value: "bebasNeue" },
-  { label: "Trade Gothic", value: "tradeGothic" },
-  { label: "Open Sans", value: "openSans" },
-  { label: "Tahoma", value: "tahoma" },
+  { label: "Bebas Neue", value: "Bebas Neue" },
+  { label: "Trade Gothic", value: "Trade Gothic" },
+  { label: "Open Sans", value: "Open Sans" },
+  { label: "Tahoma", value: "Tahoma" },
+  { label: "Verdana", value: "Verdana" },
 ];
 
 const Fonts = () => {
   const {
     control,
     formState: { errors },
+    watch,
   } = useFormContext();
+
+  const handleUploadFont = (e) => {
+    const file = e.target.files[0];
+    console.log("Uploaded font:", file);
+  };
+
+  const UploadFontButton = (
+    <div className={styles.uploadFontBtn}>
+      <div className="label" htmlFor="uploadHeadingsFont">
+        Upload OTF or TTF
+      </div>
+      <label
+        className={classNames(
+          styles.uploadFontField,
+          "Polaris-DropZone-FileUpload__Button"
+        )}
+      >
+        <input
+          type="file"
+          name="uploadHeadingsFont"
+          accept="application/x-font-opentype, application/x-font-ttf"
+          // accept="image/png"
+          onChange={handleUploadFont}
+        />
+        Upload
+      </label>
+    </div>
+  );
+
   return (
     <Layout.Section>
       <Card>
@@ -74,66 +110,54 @@ const Fonts = () => {
                 <div className={styles.grayCard}>
                   <div className="label">Headings</div>
                   <Card sectioned>
-                    <HeadingsFontPreview />
+                    <HeadingsFontPreview
+                      fontFamily={watch(headingsFont.name)}
+                    />
                     <Stack>
                       <div className={styles.selectShopifyFont}>
-                        <Select
-                          label={<span className="label">Shopify Fonts</span>}
-                          options={SHOPIFY_FONTS}
-                          value="bebasNeue"
+                        <Controller
+                          name={headingsFont.name}
+                          control={control}
+                          render={({ field: { ref, ...fieldProps } }) => (
+                            <Select
+                              {...fieldProps}
+                              label={
+                                <span className="label">
+                                  {headingsFont.label}
+                                </span>
+                              }
+                              options={SHOPIFY_FONTS}
+                              error={errors?.[headingsFont.name]?.message}
+                            />
+                          )}
                         />
                       </div>
-                      <div className={styles.uploadFontBtn}>
-                        <DropZone
-                          label={
-                            <span className="label">Upload OTF or TTF</span>
-                          }
-                          accept="application/x-font-opentype, application/x-font-ttf"
-                          outline={false}
-                        >
-                          <DropZone.FileUpload
-                            actionTitle={
-                              <div className="Polaris-DropZone-FileUpload__Button">
-                                Upload
-                              </div>
-                            }
-                            actionHint={null}
-                          />
-                        </DropZone>
-                      </div>
+                      {UploadFontButton}
                     </Stack>
                   </Card>
                 </div>
                 <div className={styles.grayCard}>
                   <div className="label">Body</div>
                   <Card sectioned>
-                    <BodyFontPreview />
+                    <BodyFontPreview fontFamily={watch(bodyFont.name)} />
                     <Stack>
                       <div className={styles.selectShopifyFont}>
-                        <Select
-                          label={<span className="label">Shopify Fonts</span>}
-                          options={SHOPIFY_FONTS}
-                          value="tradeGothic"
+                        <Controller
+                          name={bodyFont.name}
+                          control={control}
+                          render={({ field: { ref, ...fieldProps } }) => (
+                            <Select
+                              {...fieldProps}
+                              label={
+                                <span className="label">{bodyFont.label}</span>
+                              }
+                              options={SHOPIFY_FONTS}
+                              error={errors?.[bodyFont.name]?.message}
+                            />
+                          )}
                         />
                       </div>
-                      <div className={styles.uploadFontBtn}>
-                        <DropZone
-                          label={
-                            <span className="label">Upload OTF or TTF</span>
-                          }
-                          accept="application/x-font-opentype, application/x-font-ttf"
-                          outline={false}
-                        >
-                          <DropZone.FileUpload
-                            actionTitle={
-                              <div className="Polaris-DropZone-FileUpload__Button">
-                                Upload
-                              </div>
-                            }
-                            actionHint={null}
-                          />
-                        </DropZone>
-                      </div>
+                      {UploadFontButton}
                     </Stack>
                   </Card>
                 </div>

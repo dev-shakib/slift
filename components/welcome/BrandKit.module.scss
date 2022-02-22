@@ -26,19 +26,27 @@
     font-size: 16px;
     line-height: 20px;
   }
-  //   :global .Polaris-Checkbox {
-  // :global .Polaris-Checkbox__Backdrop {
-  //   border-color: #000000;
-  //   &::before {
-  //     background: #000000;
-  //     // border-radius: 50%;
-  //   }
-  //   &::after {
-  //     border-radius: 50%;
-  //     background: #000000;
-  //   }
-  // }
-  //   }
+  :global .Polaris-Checkbox {
+    :global .Polaris-Checkbox__Input {
+      & + .Polaris-Checkbox__Backdrop {
+        border-radius: 50%;
+        border: 1px solid #000000;
+      }
+      &:checked + .Polaris-Checkbox__Backdrop {
+        &::before {
+          background: #000;
+          border-radius: 50%;
+        }
+      }
+    }
+    &.Polaris-Checkbox--error {
+      :global .Polaris-Checkbox__Input {
+        & + .Polaris-Checkbox__Backdrop {
+          border-color: var(--p-border-critical);
+        }
+      }
+    }
+  }
 }
 .uploadLogo {
   //   height: 65px;
@@ -135,6 +143,9 @@
       }
     }
   }
+  :global .label {
+    margin-bottom: 4px;
+  }
 }
 .selectShopifyFont {
   :global .Polaris-Select {
@@ -158,4 +169,12 @@
 .uploadedLogo {
   width: auto;
   height: 50px;
+}
+
+.uploadFontField {
+  display: inline-flex;
+  cursor: pointer;
+  input[type="file"] {
+    display: none;
+  }
 }

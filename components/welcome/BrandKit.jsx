@@ -45,6 +45,8 @@ const BrandKit = ({ handleNext }) => {
       saleTextColorAccent2: "#cccccc",
       btnColorAccent2: "#fdb927",
       btnTextColorAccent2: "#26282a",
+      headingsFont: "Bebas Neue",
+      bodyFont: "Trade Gothic",
     },
   });
 

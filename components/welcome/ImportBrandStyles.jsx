@@ -51,7 +51,7 @@ const ImportBrandStyles = ({ handleNext }) => {
       </h2>
       <div className={styles.progressBar}>
         <ProgressBar color="primary" progress={progress} size="small" />
-        <span className={!isScanning && "done"}>
+        <span className={!isScanning ? "done" : null}>
           <Icon color="success" source={CircleTickMajor} />
         </span>
       </div>

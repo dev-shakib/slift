@@ -4,6 +4,11 @@ import { Controller, useFormContext } from "react-hook-form";
 
 import ColorPicker from "../../../form/ColorPicker";
 import Preview from "./Preview";
+import brandKitFormModel from "../../../../helpers/brand-kit/formModel";
+
+const {
+  formFields: { headingsFont, bodyFont },
+} = brandKitFormModel;
 
 const ColorsWithPreview = ({
   sectionBackgroundColor,
@@ -32,7 +37,7 @@ const ColorsWithPreview = ({
                 label="Section Background"
                 color={value}
                 onChange={onChange}
-                error={errors?.sectionBackgroundColorSecondary?.message}
+                error={errors?.[sectionBackgroundColor]?.message}
               />
             )}
           />
@@ -46,7 +51,7 @@ const ColorsWithPreview = ({
                   label="Heading Text"
                   color={value}
                   onChange={onChange}
-                  error={errors?.headingTextColorSecondary?.message}
+                  error={errors?.[headingTextColor]?.message}
                 />
               )}
             />
@@ -59,7 +64,7 @@ const ColorsWithPreview = ({
                   label="Body Text"
                   color={value}
                   onChange={onChange}
-                  error={errors?.bodyTextColorSecondary?.message}
+                  error={errors?.[bodyTextColor]?.message}
                 />
               )}
             />
@@ -72,7 +77,7 @@ const ColorsWithPreview = ({
                   label="Sale Text"
                   color={value}
                   onChange={onChange}
-                  error={errors?.saleTextColorSecondary?.message}
+                  error={errors?.[saleTextColor]?.message}
                 />
               )}
             />
@@ -87,7 +92,7 @@ const ColorsWithPreview = ({
                   label="Button"
                   color={value}
                   onChange={onChange}
-                  error={errors?.btnColorSecondary?.message}
+                  error={errors?.[btnColor]?.message}
                 />
               )}
             />
@@ -100,7 +105,7 @@ const ColorsWithPreview = ({
                   label="Button Text"
                   color={value}
                   onChange={onChange}
-                  error={errors?.btnTextColorSecondary?.message}
+                  error={errors?.[btnTextColor]?.message}
                 />
               )}
             />
@@ -112,12 +117,15 @@ const ColorsWithPreview = ({
           cardStyles={{
             backgroundColor: watch(sectionBackgroundColor),
           }}
-          headingStyles={{ color: watch(headingTextColor) }}
+          headingStyles={{
+            color: watch(headingTextColor),
+            fontFamily: watch(headingsFont.name),
+          }}
           btnStyles={{
             backgroundColor: watch(btnColor),
             color: watch(btnTextColor),
           }}
-          bodyStyles={{ color: watch(bodyTextColor) }}
+          bodyStyles={{ color: watch(bodyTextColor), fontFamily: watch(bodyFont.name), }}
         />
       </Layout.Section>
     </Layout>
