@@ -1,18 +1,7 @@
-import {
-  Banner,
-  Button,
-  Card,
-  DisplayText,
-  Form,
-  FormLayout,
-  Link,
-  TextField,
-} from "@shopify/polaris";
-import * as Yup from "yup";
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Card, DisplayText, Stack, TextStyle } from "@shopify/polaris";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import classNames from "classnames";
 
 import AuthRoute from "../components/routes/AuthRoute";
 import AuthLayout from "../components/layout/AuthLayout";
@@ -20,80 +9,69 @@ import pageStyles from "../styles/pages/sign-in.module.scss";
 import { mockLogin } from "../data/fake-users";
 import { authActions } from "../store/auth/slice";
 
-const SignInSchema = Yup.object().shape({
-  email: Yup.string()
-    .required("Email is required.")
-    .email("Please enter a valid email."),
-  password: Yup.string().required("Password is required."),
-});
-
 function SignInPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState(null);
+  const [signInMode, setSignInMode] = useState(null);
 
   const dispatch = useDispatch();
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(SignInSchema) });
+  const handleSigninAsNew = () => {
+    setSignInMode("new");
+    handleSignIn({
+      email: "newuser@email.com",
+      password: "password",
+    });
+  };
 
-  const onSubmit = async (values) => {
+  const handleSigninAsExisting = () => {
+    setSignInMode("existing");
+    handleSignIn({
+      email: "existinguser@email.com",
+      password: "password",
+    });
+  };
+
+  const handleSignIn = async (values) => {
     setIsSubmitting(true);
-    setSubmitError(false);
-    await new Promise((resolve) => setTimeout(resolve, 2500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     const signedInUser = mockLogin(values);
-    if (signedInUser) {
-      dispatch(authActions.signin(signedInUser.userData));
-    } else {
-      setSubmitError(true);
-    }
-    setIsSubmitting(false);
+    dispatch(authActions.signin(signedInUser.userData));
   };
 
   return (
     <AuthRoute>
       <AuthLayout>
         <div className={pageStyles.wrapper}>
-          <h1 className={pageStyles.pageTitle}>Login</h1>
           <Card sectioned>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <FormLayout>
-                {submitError && (
-                  <Banner status="critical">Invalid email or password.</Banner>
-                )}
-                <Controller
-                  name="email"
-                  control={control}
-                  render={({ field: { ref, ...fieldProps } }) => (
-                    // need to remove ref because TextField doesn't expose ref
-                    // results to a warning message
-                    <TextField
-                      {...fieldProps}
-                      type="email"
-                      label="Email"
-                      error={errors?.email?.message}
-                    />
-                  )}
-                />
-                <Controller
-                  name="password"
-                  control={control}
-                  render={({ field: { ref, ...fieldProps } }) => (
-                    <TextField
-                      {...fieldProps}
-                      type="password"
-                      label="Password"
-                      error={errors?.password?.message}
-                    />
-                  )}
-                />
-                <Button primary submit loading={isSubmitting}>
-                  Sign in
-                </Button>
-              </FormLayout>
-            </form>
+            <h1 className={pageStyles.pageTitle}>Sign In</h1>
+            <DisplayText size="small">
+              <div className={classNames("text-center", pageStyles.subtitle)}>
+                <TextStyle variation="subdued">
+                  For development purposes only.
+                </TextStyle>
+              </div>
+            </DisplayText>
+            <Stack distribution="center" vertical>
+              <Button
+                onClick={handleSigninAsNew}
+                size="large"
+                fullWidth
+                primary
+                disabled={isSubmitting}
+                loading={isSubmitting && signInMode === "new"}
+              >
+                As a New Customer
+              </Button>
+              <Button
+                onClick={handleSigninAsExisting}
+                size="large"
+                fullWidth
+                disabled={isSubmitting}
+                loading={isSubmitting && signInMode === "existing"}
+              >
+                As an Existing Customer
+              </Button>
+            </Stack>
           </Card>
         </div>
       </AuthLayout>
