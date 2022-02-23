@@ -1,11 +1,12 @@
 import Router from "koa-router";
 import Shopify from "@shopify/shopify-api";
 import storage from "node-persist";
-import { getBulkProduct } from "../../handlers";
+
+const StoreService = require("../store/StoreService");
 
 const router = new Router();
 
-router.get("/", async (ctx, next) => {
+router.post("/", async (ctx, next) => {
   try {
     let { shop } = ctx.query;
 
@@ -15,11 +16,11 @@ router.get("/", async (ctx, next) => {
 
     await storage.init();
 
-    const accessToken = await storage.getItem(`${shop}_accessToken`);
+    const res = await StoreService.add({
+      name: "Store",
+    });
 
-    const data = await getBulkProduct(shop, accessToken);
-
-    ctx.body = data;
+    ctx.body = res;
     ctx.status = 200;
   } catch (err) {
     throw new Error(err);
