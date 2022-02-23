@@ -8,9 +8,8 @@ import styles from "./ColorPicker.module.scss";
 
 const ColorPicker = ({ name, label, color, onChange, error }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [color, setColor] = useState(defaultColor);
-  const popover = useRef();
   const [focused, setFocused] = useState(false);
+  const popover = useRef();
 
   const close = useCallback(() => setIsOpen(false), []);
   useClickOutside(popover, close);

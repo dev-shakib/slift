@@ -9,18 +9,15 @@
   border: 0.1rem solid var(--p-border-subdued);
   border-right: 0 none;
   min-height: 3.6rem;
-  //   border-radius: var(--p-border-radius-base);
   border-top-left-radius: var(--p-border-radius-base);
   border-bottom-left-radius: var(--p-border-radius-base);
   border-top-color: var(--p-border-shadow);
-  //   border-radius: var(--p-border-radius-base);
 }
 .swatch {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.2);
-//   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 .popover {

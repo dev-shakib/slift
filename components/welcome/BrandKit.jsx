@@ -20,6 +20,7 @@ const BrandKit = ({ handleNext }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { handleSubmit, ...methods } = useForm({
     resolver: yupResolver(BrandKitSchema),
+    // This right here will be replaced by data from the server.
     defaultValues: {
       sectionBackgroundColorPrimary: "#1d1160",
       headingTextColorPrimary: "#e56020",
@@ -52,7 +53,6 @@ const BrandKit = ({ handleNext }) => {
 
   const onSubmit = async (values) => {
     setIsSubmitting(true);
-    console.log("submitted values:", values);
     await new Promise((resolve) => setTimeout(resolve, 2500));
     handleNext();
   };
