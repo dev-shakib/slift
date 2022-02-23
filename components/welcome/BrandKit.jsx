@@ -1,8 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-// import * as Yup from "yup";
-import { Button, Layout, Page, TextContainer } from "@shopify/polaris";
+import { Button, Layout, Page, TextContainer, Toast } from "@shopify/polaris";
 import { FormProvider, useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+// import { DevTool } from "@hookform/devtools";
 import { useState } from "react";
 import { TitleBar } from "@shopify/app-bridge-react";
 
@@ -10,11 +9,14 @@ import { TitleBar } from "@shopify/app-bridge-react";
 import ColorsCard from "./brand-kit/Colors";
 import FontsCard from "./brand-kit/Fonts";
 import LogosCard from "./brand-kit/Logos";
+
+// Styles
 import styles from "./BrandKit.module.scss";
 
 // Functions
 import BrandKitSchema from "../../helpers/brand-kit/validationSchema";
 import brandKitFormModel from "../../helpers/brand-kit/formModel";
+import useFormSubmitToast from "../../hooks/useFormSubmitToast";
 
 const BrandKit = ({ handleNext }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +52,8 @@ const BrandKit = ({ handleNext }) => {
       bodyFont: "Trade Gothic",
     },
   });
+
+  const { showToast, hide } = useFormSubmitToast(methods.formState, true);
 
   const onSubmit = async (values) => {
     setIsSubmitting(true);
@@ -90,8 +94,14 @@ const BrandKit = ({ handleNext }) => {
             </div>
           </form>
         </FormProvider>
-        <DevTool control={methods.control} />
+        {/**
+         * Note: RHF devtool, will be used from time to time
+         * <DevTool control={methods.control} />
+         */}
       </div>
+      {showToast && (
+        <Toast content="Please fill in all the required fields." error onDismiss={hide} />
+      )}
     </Page>
   );
 };
