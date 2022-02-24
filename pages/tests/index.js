@@ -1,7 +1,14 @@
-import React from 'react';
+import { DisplayText, Page } from "@shopify/polaris";
+import DashboardLayout from "../../components/layout/DashboardLayout";
 
 function TestsPage() {
-  return <div>This is the tests page</div>;
+  return (
+    <DashboardLayout>
+      <Page>
+        <DisplayText>Tests</DisplayText>
+      </Page>
+    </DashboardLayout>
+  );
 }
 
 export default TestsPage;
