@@ -10,10 +10,11 @@ import translations from "@shopify/polaris/locales/en.json";
 import { Provider as ReduxStoreProvider } from "react-redux";
 
 import AppRoutePropagator from "../components/routes/AppRoutePropagator";
-import reduxStore from "../store";
 import AppClientRouter from "../components/routes/AppClientRouter";
-import "../styles/theme.scss";
 import AppRouteSwitcher from "../components/routes/AppRouteSwitcher";
+import Link from "../components/common/Link";
+import reduxStore from "../store";
+import "../styles/theme.scss";
 
 function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);
@@ -62,7 +63,21 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
     return (
-      <AppProvider i18n={translations}>
+      <AppProvider
+        i18n={translations}
+        linkComponent={Link}
+        theme={{
+          logo: {
+            width: 124,
+            topBarSource:
+              "https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg?6215648040070010999",
+            contextualSaveBarSource:
+              "https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-gray.svg?6215648040070010999",
+            url: "http://jadedpixel.com",
+            accessibilityLabel: "Jaded Pixel",
+          },
+        }}
+      >
         <Provider
           config={{
             apiKey: API_KEY,

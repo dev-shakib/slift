@@ -1,11 +1,13 @@
-import Link from "next/link";
-import React from "react";
+import { DisplayText, Page } from "@shopify/polaris";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 function SettingsPage() {
   return (
-    <div>
-      This is the settings page
-    </div>
+    <DashboardLayout>
+      <Page>
+        <DisplayText>Settings</DisplayText>
+      </Page>
+    </DashboardLayout>
   );
 }
 

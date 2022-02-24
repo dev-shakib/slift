@@ -1,13 +1,13 @@
-import { Page } from "@shopify/polaris";
-import Link from "next/link";
-import React from "react";
+import { DisplayText, Page } from "@shopify/polaris";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 function AnalyticsPage() {
   return (
-    <Page>
-      <div>Analytics Page</div>
-      <Link href="/">Go to dahsboard</Link>
-    </Page>
+    <DashboardLayout>
+      <Page>
+        <DisplayText>Analytics</DisplayText>
+      </Page>
+    </DashboardLayout>
   );
 }
 
