@@ -1,0 +1,44 @@
+.title {
+  // margin-top: 178px;
+  margin-top: 20%;
+  margin-bottom: 29px;
+  font-size: 32px;
+  line-height: 32px;
+}
+.subtitle {
+  opacity: 0.6;
+  font-size: 20px;
+  line-height: 20px;
+}
+.actionBtn {
+  text-align: center;
+  margin-top: 40px;
+}
+.progressBar {
+  text-align: center;
+  margin-bottom: 17px;
+  margin-top: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  :global .Polaris-ProgressBar {
+    width: 204px;
+    height: 3px;
+    margin-right: 10px;
+  }
+  :global .Polaris-Icon {
+    visibility: hidden;
+  }
+  :global .done {
+    :global .Polaris-Icon {
+      visibility: visible;
+    }
+  }
+}
+.progressMessage {
+  :global p {
+    font-size: 16px;
+    line-height: 32px;
+    color: #000000;
+  }
+}

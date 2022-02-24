@@ -1,9 +1,27 @@
-import { Heading, Page } from "@shopify/polaris";
+import { Button, DisplayText, Heading, Page } from "@shopify/polaris";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import UserRoute from "../components/routes/UserRoute";
+import * as authActions from "../store/auth/actions"
 
-const Index = () => (
-  <Page>
-    <Heading>Welcome to ShopLift App 🎉</Heading>
-  </Page>
-);
+function Dashboard() {
+  const dispatch = useDispatch()
 
-export default Index;
+  const handleSignout = () => {
+    dispatch(authActions.signout())
+  }
+  
+  return (
+    <UserRoute>
+      <Page>
+        <DisplayText>Welcome to ShopLift App Dashboard 🎉</DisplayText>
+        <Button plain monochrome onClick={handleSignout}>
+          Sign out
+        </Button>
+        <Link href="/create-a-test">Create a Test</Link>
+      </Page>
+    </UserRoute>
+  );
+};
+
+export default Dashboard;

@@ -1,0 +1,180 @@
+.mainContent {
+  margin-top: 63px;
+  margin-bottom: 70px;
+}
+.titleArea {
+  margin-bottom: 49px;
+}
+.title {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 20px;
+  margin-bottom: 34px;
+}
+.subtitle {
+  opacity: 0.6;
+  font-size: 20px;
+  line-height: 24px;
+}
+.cardSubtitle {
+  opacity: 0.6;
+  margin-left: 28px;
+}
+.cardTitleCheckbox {
+  :global .Polaris-Choice__Label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  :global .Polaris-Checkbox {
+    :global .Polaris-Checkbox__Input {
+      & + .Polaris-Checkbox__Backdrop {
+        border-radius: 50%;
+        border: 1px solid #000000;
+      }
+      &:checked + .Polaris-Checkbox__Backdrop {
+        &::before {
+          background: #000;
+          border-radius: 50%;
+        }
+      }
+    }
+    &.Polaris-Checkbox--error {
+      :global .Polaris-Checkbox__Input {
+        & + .Polaris-Checkbox__Backdrop {
+          border-color: var(--p-border-critical);
+        }
+      }
+    }
+  }
+}
+.uploadLogo {
+  //   height: 65px;
+  :global .Polaris-Label {
+    margin-bottom: 18px;
+  }
+  :global .Polaris-DropZone--sizeExtraLarge {
+    width: 100%;
+    max-width: 569px;
+    height: 65px;
+    min-height: auto;
+    :global .Polaris-DropZone-FileUpload {
+      justify-content: start;
+      padding-left: 27px;
+      padding-right: 27px;
+      :global .Polaris-Stack--vertical {
+        flex-direction: row;
+        margin-top: 0;
+        align-items: center;
+        :global .Polaris-Stack__Item {
+          margin-top: 0;
+          &:first-child {
+            display: none;
+          }
+          &:last-child {
+            margin-left: 29px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cardContent {
+  margin-top: 18px;
+}
+.innerCards {
+  margin-left: 28px;
+}
+.grayCard {
+  :global .Polaris-Card {
+    background: #f1f2f3;
+    box-shadow: none;
+  }
+  :global .label {
+    margin-bottom: 10px;
+  }
+}
+.fontPreview {
+  width: 183px;
+  height: 80px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 13px;
+}
+.headingsFontPreview {
+  font-family: "Bebas Neue", cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 20px;
+}
+.bodyFontPreview {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+}
+.uploadFontBtn {
+  width: 150px;
+  min-height: 36px;
+  :global .Polaris-DropZone--sizeMedium {
+    height: 36px;
+    width: 81px;
+    min-height: auto;
+    :global .Polaris-DropZone-FileUpload {
+      padding: 0;
+      height: auto;
+      :global .Polaris-DropZone-FileUpload__ActionTitle {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    :global .Polaris-Stack {
+      margin: 0;
+      :global .Polaris-Stack__Item {
+        margin: 0;
+      }
+    }
+  }
+  :global .label {
+    margin-bottom: 4px;
+  }
+}
+.selectShopifyFont {
+  :global .Polaris-Select {
+    width: 242px;
+  }
+}
+
+.confirmBtn {
+  width: 392px;
+  margin: 53px auto 0;
+}
+
+.hasUploadedData {
+  :global .Polaris-DropZone__Container {
+    background: #f1f2f3;
+    border-radius: 4px;
+    padding: 7px 12px;
+  }
+}
+
+.uploadedLogo {
+  width: auto;
+  height: 50px;
+}
+
+.uploadFontField {
+  display: inline-flex;
+  cursor: pointer;
+  input[type="file"] {
+    display: none;
+  }
+}
