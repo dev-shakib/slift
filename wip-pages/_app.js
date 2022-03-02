@@ -7,6 +7,14 @@ import { authenticatedFetch } from "@shopify/app-bridge-utils";
 import { Redirect } from "@shopify/app-bridge/actions";
 import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
+import { Provider as ReduxStoreProvider } from "react-redux";
+
+import AppRoutePropagator from "../components/routes/AppRoutePropagator";
+import AppClientRouter from "../components/routes/AppClientRouter";
+import AppRouteSwitcher from "../components/routes/AppRouteSwitcher";
+import Link from "../components/common/Link";
+import reduxStore from "../store";
+import "../styles/theme.scss";
 
 function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);
@@ -44,7 +52,9 @@ function MyProvider(props) {
 
   return (
     <ApolloProvider client={client}>
-      <Component {...props} />
+      <AppRouteSwitcher>
+        <Component {...props} />
+      </AppRouteSwitcher>
     </ApolloProvider>
   );
 }
@@ -53,7 +63,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
     return (
-      <AppProvider i18n={translations}>
+      <AppProvider i18n={translations} linkComponent={Link}>
         <Provider
           config={{
             apiKey: API_KEY,
@@ -61,7 +71,11 @@ class MyApp extends App {
             forceRedirect: true,
           }}
         >
-          <MyProvider Component={Component} {...pageProps} />
+          <ReduxStoreProvider store={reduxStore}>
+            <AppClientRouter />
+            <AppRoutePropagator />
+            <MyProvider Component={Component} {...pageProps} />
+          </ReduxStoreProvider>
         </Provider>
       </AppProvider>
     );
