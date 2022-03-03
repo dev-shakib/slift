@@ -19,6 +19,7 @@ const app = next({
   dev,
 });
 const handle = app.getRequestHandler();
+const MerchantService = require("./api/merchant/merchantService");
 
 Shopify.Context.initialize({
   API_KEY: process.env.SHOPIFY_API_KEY,
@@ -49,6 +50,12 @@ app.prepare().then(async () => {
         await storage.setItem(`${shop}_accessToken`, accessToken);
         await storage.setItem(`${shop}_shop`, shop);
 
+        // Create new merchant
+        await MerchantService.findOrInitialiseMerchant({
+          shop: shop,
+          accessToken: accessToken,
+        });
+
         const response = await Shopify.Webhooks.Registry.register({
           shop,
           accessToken,
@@ -60,7 +67,7 @@ app.prepare().then(async () => {
           },
         });
 
-        if (!response.success) {
+        if (!response.APP_UNINSTALLED.success) {
           logger.info(
             `Failed to register APP_UNINSTALLED webhook: ${response.result}`
           );

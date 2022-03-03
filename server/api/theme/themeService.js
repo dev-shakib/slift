@@ -2,7 +2,7 @@ import Shopify from "@shopify/shopify-api";
 
 const db = require("../../utils/db");
 
-const getThemeVersion = async (params) => {
+const getThemeDetails = async (params) => {
   // Specify the name of the template the app will integrate with
   const APP_BLOCK_TEMPLATES = ["product", "collection", "index"];
 
@@ -32,14 +32,6 @@ const getThemeVersion = async (params) => {
       (template) => file.key === `templates/${template}.json`
     );
   });
-
-  if (templateJSONFiles.length === APP_BLOCK_TEMPLATES.length) {
-    console.log("All desired templates support sections everywhere!");
-  } else if (templateJSONFiles.length) {
-    console.log(
-      "Only some of the desired templates support sections everywhere."
-    );
-  }
 
   // Retrieve the body of JSON templates and find what section is set as `main`
   const templateMainSections = (
@@ -95,13 +87,14 @@ const getThemeVersion = async (params) => {
     )
   ).filter((value) => value);
 
-  if (sectionsWithAppBlock.length) {
-    return `2.0`;
-  } else {
-    return `1.0`;
-  }
+  return {
+    publishedThemeId: publishedTheme.id,
+    publishedThemeVersion:
+      templateJSONFiles.length === APP_BLOCK_TEMPLATES.length ? 2.0 : 1.0,
+    publishedThemeAppSupport: sectionsWithAppBlock.length > 0 ? 1 : 0,
+  };
 };
 
 module.exports = {
-  getThemeVersion,
+  getThemeDetails,
 };
